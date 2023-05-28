@@ -1,0 +1,15 @@
+#validation-error-msg {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  flex-wrap: wrap;
+  margin-top: 1em;
+  width: 100%;
+  border: 3px solid red;
+  color: red;
+  font-weight: 500;
+}
+
+#validation-error-msg.hidden {
+display: none;
+}
