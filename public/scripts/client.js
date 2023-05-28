@@ -4,31 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// const data = [
-//   {
-//     "user": {
-//       "name": "Newton",
-//       "avatars": "https://i.imgur.com/73hZDYK.png"
-//       ,
-//       "handle": "@SirIsaac"
-//     },
-//     "content": {
-//       "text": "If I have seen further it is by standing on the shoulders of giants"
-//     },
-//     "created_at": 1461116232227
-//   },
-//   {
-//     "user": {
-//       "name": "Descartes",
-//       "avatars": "https://i.imgur.com/nlhLi3I.png",
-//       "handle": "@rd"
-//     },
-//     "content": {
-//       "text": "Je pense , donc je suis"
-//     },
-//     "created_at": 1461113959088
-//   }
-// ];
+// HTML markup for how tweet should appear
 const createTweetElement = function(tweet) {
   let $tweet = `
   <article>
@@ -52,6 +28,7 @@ const createTweetElement = function(tweet) {
   return $tweet;
 };
 
+// adding new tweets to tweets container
 const renderTweets = function(tweets) {
   for (const tweet of tweets) {
     let $tweet = createTweetElement(tweet);
@@ -59,12 +36,14 @@ const renderTweets = function(tweets) {
   }
 };
 
+// required to prevent cross-site scripting
 function escape(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
+// HTML markup for error message that is passed in
 function errorMessage(msg) {
   const errorMsg = `
   <i class="fa-solid fa-triangle-exclamation"></i>
@@ -72,6 +51,9 @@ function errorMessage(msg) {
   `;
   return $(errorMsg);
 }
+
+
+// document ready function begins
 
 $(() => {
 
@@ -81,15 +63,18 @@ $(() => {
     });
   };
   loadTweets();
+
+  // event listener for submit
   $("#tweet-entry").on("submit", function(event) {
     event.preventDefault();
 
+    // tweet validation
     const tweetText = escape($("#tweet-text").val());
 
     if (!tweetText) {
       if ($("#validation-error-msg").hasClass("hidden")) {
-      $("#validation-error-msg").removeClass("hidden");
-      $("#validation-error-msg").append(errorMessage("Please enter text"));
+        $("#validation-error-msg").removeClass("hidden");
+        $("#validation-error-msg").append(errorMessage("Please enter text"));
       }
     } else if (tweetText.length > 140) {
       $("#validation-error-msg").removeClass("hidden");
@@ -98,9 +83,11 @@ $(() => {
       if (!$("#validation-error-msg").hasClass("hidden")) {
         $("#validation-error-msg").addClass("hidden");
       }
+
+      // send tweet to server db
       $.post("/tweets", { text: tweetText }).done(function(tweets) {
-        $("tweets-container").empty();
         $("#tweet-text").val('');
+        $("#tweets-container").empty();
         loadTweets();
       });
     }

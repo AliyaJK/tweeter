@@ -30,3 +30,38 @@ main {
   justify-content: center;
   padding-top: 20px;
 }
+
+/* Style for responsive design */
+
+@media (max-width: 767px) {
+
+
+  #nav-column {
+    flex-direction: column;
+    background-color: #cf9400;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+    font-size: 1.2em;
+  }
+
+  header.main {
+    height: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-box {
+    display: flex;
+    flex-direction: row;
+  }
+
+  header.main {
+    margin: 20px;
+    height: 450px;
+    width: 50%;
+  }
+
+  #body-column {
+    margin: 20px;
+    width: 50%;
+  }
+}
