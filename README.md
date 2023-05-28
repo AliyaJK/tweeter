@@ -20,9 +20,9 @@ Tweeter is a single-page Twitter clone, where users can create short posts of up
 ## Dependencies
 
 Mobile
-
+!["Screenshot of Tweeter on mobile device"](https://github.com/AliyaJK/tweeter/blob/master/docs/Screen%20Shot%202023-05-27%20at%2010.08.25%20PM.png?raw=true)
 
 Tablet
+!["Screenshot of Tweeter on tablet"](https://github.com/AliyaJK/tweeter/blob/master/docs/Screen%20Shot%202023-05-27%20at%2010.08.35%20PM.png?raw=true)
 
-
-Desktop
+Desktop!["Screenshot of Tweeter on desktop"](https://github.com/AliyaJK/tweeter/blob/master/docs/Screen%20Shot%202023-05-27%20at%2010.08.45%20PM.png?raw=true)
