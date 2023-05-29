@@ -60,6 +60,9 @@ $(() => {
   const loadTweets = function() {
     $.get("/tweets").done(function(tweets) {
       renderTweets(tweets);
+    })
+    .fail(function(error) {
+      console.log("Error loading tweets:", error);  
     });
   };
   loadTweets();
@@ -82,12 +85,14 @@ $(() => {
     } else {
       if (!$("#validation-error-msg").hasClass("hidden")) {
         $("#validation-error-msg").addClass("hidden");
+        $("#validation-error-msg").empty();
       }
 
       // send tweet to server db
       $.post("/tweets", { text: tweetText }).done(function(tweets) {
         $("#tweet-text").val('');
         $("#tweets-container").empty();
+        $("#counter").val(140);
         loadTweets();
       });
     }
